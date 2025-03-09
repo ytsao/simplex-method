@@ -61,6 +61,7 @@ public:
     }
 
     bool primal_simplex(SOPModel& model) {
+        this->p_iterations = 0;
         // step1. optimality test
         while (!optimality(model.get_header())) {
             /*std::cout << "finish step 1" << std::endl;*/
@@ -119,7 +120,6 @@ public:
             // step 7. compute dual step length
             // s = z_star_j / delta_z_j
             double s = model.get_header()(entering_index) / delta_z_N[entering_index];
-            /*std::cout << "finish step 7" << std::endl;*/
 
             // step 8. update current primal and dual solution
             for (int i = 0; i < model.get_num_rows(); ++i) {
@@ -155,13 +155,16 @@ public:
             /*std::cout << "entering variable index:" << entering_index << ", name: " << entering_variable.get_var_name() << std::endl;*/
             /*std::cout << "leaving variable index:" << leaving_index << ", name: " << leaving_variable.get_var_name() << std::endl;*/
             /*std::cout << "finish step 9" << std::endl;*/
-            /**/
+
             this->p_iterations++;
         }
+        std::cout << "number of iterations: " << this->p_iterations << std::endl;
+
         return true;
     }
 
     bool dual_simplex(SOPModel& model) {
+        this->d_iterations = 0;
         // step 1. optimality test
         while (!optimality(model.get_rhs())) {
             /*std::cout << "finish step 1" << std::endl;*/
@@ -255,6 +258,8 @@ public:
 
             this->d_iterations++;
         }
+        std::cout << "number of iterations: " << this->d_iterations << std::endl;
+
         return true;
     }
 

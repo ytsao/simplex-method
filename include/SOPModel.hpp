@@ -26,7 +26,7 @@ public:
     SOPVariables create_nonbasic(std::string name, char type, int id, double lb, double ub){
       SOPVariables new_var = SOPVariables(name, type, id, lb, ub);
       this->nonbasic.push_back(new_var);
-      this->num_cols;
+      this->num_cols++;
       
       return new_var;
     }
