@@ -22,5 +22,11 @@ sudo cp -r /usr/local/include/eigen3/Eigen usr/local/include
 
 ## How to use?
 ```cmd
-./run.sh
+git clone https://github.com/ytsao/simplex-method.git
+cd simplex-method 
+mkdir build 
+cd build 
+cmake .. 
+make 
+./simplex_method
 ```
